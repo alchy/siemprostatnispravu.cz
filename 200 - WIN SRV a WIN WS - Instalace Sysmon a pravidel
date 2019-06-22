@@ -16,3 +16,4 @@ instalace Sysmon
 
 * otevřít EventViewer jako Administrátor
 * logy se zapisují do (Local)\Application and Service Logs\Microsoft\Windows -> Sysmon
+
