@@ -1,0 +1,9 @@
+winlogbeat.event_logs:
+  - name: Application
+    ignore_older: 168h
+  - name: Security
+  - name: System
+  - name: Windows PowerShell
+  - name: Microsoft-Windows-Sysmon/Operational
+  - name: Microsoft-Windows-PowerShell/Operational
+  - name: Kaspersky
