@@ -1,0 +1,15 @@
+----------------
+instalace Sysmon
+----------------
+
+- Stáhnout Sysmon
+  https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon
+
+- přesunou adresář Sysmon ze zipu do adresáře "C:\Program Files\"
+- do adresáře "C:\Program Files\Sysmon" nakopírovat soubor
+  https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/z-AlphaVersion.xml
+
+- spustit PowerShell s právy Administrátora
+- přejít do adresáře "C:\Program Files\Sysmon"
+- spustit 
+  sysmon.exe -accepteula -i z-AlphaVersion.xml
