@@ -6,6 +6,6 @@ konfigurace logování powershellu
 - zapnout "Module Logging", Enables, Module Names (Show) -> Value * (všechny)
 - zapnout "PowerShell Script Block Logging", nezapínat "Log Script Block Invokation"
 
-*
+* otevřít EventViewer jako Administrátor
 * logy se zapisují do Application and Service Logs\Windows PowerShell
 
