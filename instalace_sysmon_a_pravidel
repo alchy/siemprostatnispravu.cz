@@ -12,4 +12,4 @@ instalace Sysmon
 - spustit PowerShell s právy Administrátora
 - přejít do adresáře "C:\Program Files\Sysmon"
 - spustit 
-  sysmon.exe -accepteula -i z-AlphaVersion.xml
+  .\Sysmon64.exe -accepteula -i z-AlphaVersion.xml
