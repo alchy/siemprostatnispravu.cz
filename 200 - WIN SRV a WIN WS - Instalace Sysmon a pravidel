@@ -14,5 +14,5 @@ instalace Sysmon
 - spustit 
   .\Sysmon64.exe -accepteula -i z-AlphaVersion.xml
 
-- otevřít EventViewer jako Administrátor
-- zkontrolovat položku EventViewer (Local)\Application and Service Logs\Microsoft\Windows -> Sysmon
+* otevřít EventViewer jako Administrátor
+* logy se zapisují do (Local)\Application and Service Logs\Microsoft\Windows -> Sysmon
