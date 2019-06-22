@@ -1,3 +1,5 @@
+# http://robwillis.info/2019/05/gathering-windows-powershell-and-sysmon-events-with-winlogbeat-elk-7-windows-server-2016/
+
 winlogbeat.event_logs:
   - name: Application
     ignore_older: 168h
