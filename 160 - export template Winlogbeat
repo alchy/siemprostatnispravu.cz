@@ -1,0 +1,1 @@
+.\winlogbeat.exe export template --es.version 7.1.1 | Out-File -Encoding UTF8 winlogbeat.template.json
