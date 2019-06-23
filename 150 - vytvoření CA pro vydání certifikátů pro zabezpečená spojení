@@ -1,0 +1,30 @@
+-----------------------------------------------------------
+vystavení crt pro zabezpečená spojení mezi Beats a Logstash
+-----------------------------------------------------------
+
+- bude použit nástroj EasyRSA
+  https://github.com/OpenVPN/easy-rsa/blob/v3.0.0-rc1/doc/EasyRSA-Readme.md
+
+- stáhnutí nástroje
+  git clone git://github.com/OpenVPN/easy-rsa
+
+- přepnutí do adreáře
+  cd easy-rsa/
+
+- inicializace PKI (public key infrastructure)
+  ./easyrsa3/easyrsa init-pki
+* PKI je umístěno v /root/easy-rsa/pki
+
+- vytvoření certifikační autority
+  ./easyrsa3/easyrsa build-ca
+* certifíkát CA je v nyní v /root/easy-rsa/pki/ca.crt
+
+- vytvořit žádost o certifikát společně s generováním priv. klíče bez enkrypce priv. klíče
+  ./easyrsa3/easyrsa gen-req nameOfRequest nopass
+* výstupem je požadavek a privátní klíč
+* req: /root/easy-rsa/pki/reqs/nameOfRequest.req
+* key: /root/easy-rsa/pki/private/nameOfRequest.key
+
+- podepsání žádosti o certifikát
+  ./easyrsa3/easyrsa import-req /path/to/request.req nameOfRequest
+
