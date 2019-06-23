@@ -1,6 +1,6 @@
---------------------------
-export template winlogbeat
---------------------------
+-----------------------------------
+export a import template winlogbeat
+-----------------------------------
 
 - export template z winlogbeat do souboru
   .\winlogbeat.exe export template --es.version 7.1.1 | Out-File -Encoding UTF8 winlogbeat.template.json
