@@ -23,7 +23,7 @@ vystavení crt pro zabezpečená spojení mezi Beats a Logstash
   ./easyrsa3/easyrsa gen-req nameOfRequest nopass
 
 # v případě generování požadavku na certifikát pro více jmen, pak je možné použít přepínač --subject-alt-name
-#  ./easyrsa --subject-alt-name="DNS:www.example.net,DNS:secure.example.net" gen-req www.example.net nopass
+# ./easyrsa --subject-alt-name="DNS:www.example.net,DNS:secure.example.net" gen-req www.example.net nopass
 
 * výstupem je požadavek a privátní klíč
 * req: /root/easy-rsa/pki/reqs/nameOfRequest.req
