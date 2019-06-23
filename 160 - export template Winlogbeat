@@ -1,1 +1,11 @@
-.\winlogbeat.exe export template --es.version 7.1.1 | Out-File -Encoding UTF8 winlogbeat.template.json
+--------------------------
+export template winlogbeat
+--------------------------
+
+- export template z winlogbeat do souboru
+  .\winlogbeat.exe export template --es.version 7.1.1 | Out-File -Encoding UTF8 winlogbeat.template.json
+
+- uložení template winlogbeat
+  POST _template/winlogbeat-<version>
+  { .. }
+  
