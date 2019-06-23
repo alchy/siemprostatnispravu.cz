@@ -1,4 +1,10 @@
-https://www.elastic.co/guide/en/logstash/current/plugins-inputs-beats.html
+------------------
+nastaveni logstash
+------------------
 
-persist disk queue in logstash
-https://www.elastic.co/blog/logstash-persistent-queue
+- konfigurace trvalé diskové cache pro logstash
+  https://www.elastic.co/blog/logstash-persistent-queue
+
+- konfigurace logstash pluginu
+  https://www.elastic.co/guide/en/logstash/current/plugins-inputs-beats.html
+
