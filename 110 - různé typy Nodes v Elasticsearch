@@ -11,6 +11,9 @@ typy nod v Elasticsearch
   node.data: false
   node.ingest: false
 
+- master node (eligible to be elected as the master node, which controls the cluster)
+  node.master: true
+  
 - data node (hold data and perform data related operations such as CRUD, search, and aggregations)
   node.data: true
   
