@@ -1,1 +1,4 @@
 https://www.elastic.co/guide/en/logstash/current/plugins-inputs-beats.html
+
+persist disk queue in logstash
+https://www.elastic.co/blog/logstash-persistent-queue
