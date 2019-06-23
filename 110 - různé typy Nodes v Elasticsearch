@@ -2,4 +2,19 @@
 typy nod v Elasticsearch
 ------------------------
 
+- coordinating node (coordinating node forwards the request to the data nodes \
+  which hold the data; each data node executes the request locally and returns \
+  its results to the coordinating node; in the gather phase, the coordinating \
+  node reduces each data node’s results into a single global resultset)
+  
+  node.master: false
+  node.data: false
+  node.ingest: false
+
+- data node (hold data and perform data related operations such as CRUD, search, and aggregations)
+  node.data: true
+  
+- ingest node (apply an ingest pipeline to a document in order to transform and enrich the document before indexing)
+  node.ingest: false
+  
 * https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html
