@@ -12,23 +12,26 @@ vystavení crt pro zabezpečená spojení mezi Beats a Logstash
   cd easy-rsa/
 
 - inicializace PKI (public key infrastructure)
-  ./easyrsa3/easyrsa init-pki
+  ./easyrsa init-pki
 * PKI je umístěno v /root/easy-rsa/pki
 
 - vytvoření certifikační autority
-  ./easyrsa3/easyrsa build-ca
+  ./easyrsa build-ca
 * certifíkát CA je v nyní v /root/easy-rsa/pki/ca.crt
 
-- vytvořit žádost o certifikát společně s generováním priv. klíče bez enkrypce priv. klíče
-  ./easyrsa3/easyrsa gen-req nameOfRequest nopass
+# vytvořit žádost o certifikát společně s generováním priv. klíče bez enkrypce priv. klíče
+#  ./easyrsa3/easyrsa gen-req nameOfRequest nopass
 
-# v případě generování požadavku na certifikát pro více jmen, pak je možné použít přepínač --subject-alt-name
-# ./easyrsa --subject-alt-name="DNS:www.example.net,DNS:secure.example.net" gen-req www.example.net nopass
+- v případě generování požadavku na certifikát pro více jmen, pak je možné použít přepínač --subject-alt-name
+  ./easyrsa --subject-alt-name="DNS:d1clcsec1.dc.vzp.cz,DNS:d2clcsec1.dc.vzp.cz,d1clcsec2.dc.vzp.cz,d2clcsec2.dc.vzp.cz" gen-req clcsec.dc.vzp.cz nopass
 
 * výstupem je požadavek a privátní klíč
-* req: /root/easy-rsa/pki/reqs/nameOfRequest.req
-* key: /root/easy-rsa/pki/private/nameOfRequest.key
+* req: /data/easyrsa/easyrsa/pki/reqs/clcsec.dc.vzp.cz.req
+* key: /data/easyrsa/easyrsa/pki/private/clcsec.dc.vzp.cz.key
 
+- import req:
+  ./easyrsa import-req /data/easyrsa/easyrsa/pki/reqs/clcsec.dc.vzp.cz.req clcsec.dc.vzp.cz.req
+  
 - podepsání žádosti o certifikát
   ./easyrsa3/easyrsa import-req /path/to/request.req nameOfRequest
   
