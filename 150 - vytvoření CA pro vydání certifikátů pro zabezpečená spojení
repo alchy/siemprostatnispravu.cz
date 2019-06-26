@@ -53,6 +53,9 @@ vystavení certifikátru pro klienta logování
 - žádost o certifikát pro log_infrastructure_client
   ./easyrsa --subject-alt-name="DNS:*.dc.vzp.cz,DNS:*.kz.vzp.cz" gen-req log_infrastructure_client nopass
 
+- show req:
+  ./easyrsa show-req log_infrastructure_client
+
 - podepsání žádosti
   ./easyrsa sign-req client log_infrastructure_client
   
