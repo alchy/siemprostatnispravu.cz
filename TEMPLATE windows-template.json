@@ -1569,9 +1569,8 @@ PUT /_template/winlogbeat-template
                 "type" : "keyword"
               },
               "UtcTime" : {
-                "ignore_above" : 256,
-                "index": false,
-                "type" : "keyword"
+                "enabled" : false,
+                "type" : "object"
               },
               "DestinationIp" : {
                 "type" : "ip"
