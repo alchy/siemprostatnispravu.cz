@@ -28,7 +28,7 @@ vystavení certifikátru pro log server/logstash
 ----------------------------------------------
 
 # vytvořit žádost o certifikát společně s generováním priv. klíče bez enkrypce priv. klíče
-#  ./easyrsa3/easyrsa gen-req nameOfRequest nopass
+#  ./easyrsa gen-req nameOfRequest nopass
 
 - v případě generování požadavku na certifikát pro více jmen, pak je možné použít přepínač --subject-alt-name
   ./easyrsa --subject-alt-name="DNS:d1clcsec1.dc.vzp.cz,DNS:d2clcsec1.dc.vzp.cz,d1clcsec2.dc.vzp.cz,d2clcsec2.dc.vzp.cz" gen-req clcsec.dc.vzp.cz nopass
@@ -38,10 +38,10 @@ vystavení certifikátru pro log server/logstash
 * key: /data/easyrsa/easyrsa/pki/private/clcsec.dc.vzp.cz.key
 
 - import req:
-  ./easyrsa import-req /data/easyrsa/easyrsa/pki/reqs/clcsec.dc.vzp.cz.req clcsec.dc.vzp.cz.req
+  ./easyrsa import-req /data/easyrsa/easyrsa/pki/reqs/clcsec.dc.vzp.cz.req clcsec.dc.vzp.cz
   
 - show req:
-  ./easyrsa show-req clcsec.dc.vzp.cz.req
+  ./easyrsa show-req clcsec.dc.vzp.cz
   
 - podepsání žádosti o certifikát
   ./easyrsa sign-req server clcsec.dc.vzp.cz
