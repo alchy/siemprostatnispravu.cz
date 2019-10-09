@@ -119,6 +119,12 @@ PUT /_template/packetbeat-template
             }
           }
         },
+        "dst_ip" : {
+          "type" : "ip"
+        },
+        "dst_fqdn" : {
+          "type" : "keyword"
+        },
         "dns" : {
           "properties" : {
             "additionals_count" : {
@@ -624,6 +630,12 @@ PUT /_template/packetbeat-template
               }
             }
           }
+        },
+        "src_ip" : {
+          "type" : "ip"
+        },
+        "src_fqdn" : {
+          "type" : "keyword"
         },
         "status" : {
           "type" : "text",
