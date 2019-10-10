@@ -14,6 +14,27 @@ PUT /_template/packetbeat-template
             }
           }
         },
+        "action" : {
+          "type" : "keyword"
+        },
+        "detail" : {
+          "type" : "keyword"
+        },
+        "origin" : {
+          "type" : "keyword"
+        },
+        "dst_ip" : {
+          "type" : "ip"
+        },
+        "dst_fqdn" : {
+          "type" : "keyword"
+        },
+        "src_ip" : {
+          "type" : "ip"
+        },
+        "src_fqdn" : {
+          "type" : "keyword"
+        },
         "agent" : {
           "properties" : {
             "ephemeral_id" : {
@@ -118,12 +139,6 @@ PUT /_template/packetbeat-template
               }
             }
           }
-        },
-        "dst_ip" : {
-          "type" : "ip"
-        },
-        "dst_fqdn" : {
-          "type" : "keyword"
         },
         "dns" : {
           "properties" : {
@@ -630,12 +645,6 @@ PUT /_template/packetbeat-template
               }
             }
           }
-        },
-        "src_ip" : {
-          "type" : "ip"
-        },
-        "src_fqdn" : {
-          "type" : "keyword"
         },
         "status" : {
           "type" : "text",
