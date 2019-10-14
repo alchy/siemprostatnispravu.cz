@@ -35,6 +35,12 @@ PUT /_template/packetbeat-template
         "src_fqdn" : {
           "type" : "keyword"
         },
+        "proxy" : {
+          "type" : "boolean"
+        },
+        "tap" : {
+          "type" : "keyword"
+        },
         "agent" : {
           "properties" : {
             "ephemeral_id" : {
