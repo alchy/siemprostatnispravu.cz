@@ -35,7 +35,7 @@ PUT /_template/packetbeat-template
         "src_fqdn" : {
           "type" : "keyword"
         },
-        "proxy" : {
+        "via-proxy" : {
           "type" : "boolean"
         },
         "tap" : {
