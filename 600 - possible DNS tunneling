@@ -29,8 +29,8 @@ ES_TIMEOUT      = 1000
 
 ''' email and alert specific options '''
 ALERT_NAME      = "possible DNS tunneling"
-ALERT_SENDER    = "somesender@somedomain"
-ALERT_RECIPIENT = "somesender@somedomain"
+ALERT_SENDER    = "someuser@somedomain"
+ALERT_RECIPIENT = "someuser@somedomain"
 ALERT_FILE      = "/tmp/_tmp_" + hashlib.md5(ALERT_NAME.encode('utf-8')).hexdigest()
 ALERT_TRIGGER   = False
 
@@ -63,8 +63,8 @@ DOMAINS_EXCLUDED = [ "sophosxl.com",
 
 DOMAIN = {}
 DOMAIN_TIME_PROCESSED = "now-24h"                       # time window to process
-DOMAIN_WARNING_TRESHOLD = 256                           # report domain if this is exceeded
-DOMAIN_NOT_REPORT_SUB = 1023                            # how many subdomains is in the report
+DOMAIN_WARNING_TRESHOLD = 128                           # report domain if this is exceeded
+DOMAIN_NOT_REPORT_SUB = 1024                            # how many subdomains is in the report
 
 
 ''' event processing '''
@@ -73,16 +73,15 @@ def processing(hit):
   domain_full = hit['dns']['question']['name']
   domain_qtpe = hit['dns']['question']['type']
 
-  if domain_qtpe != "PTR":
-    try:
-      DOMAIN[domain_shrt].add(domain_full)
-    except KeyError:
-      DOMAIN[domain_shrt] = set()
-      DOMAIN[domain_shrt].add(domain_full)
+  try:
+    DOMAIN[domain_shrt].add(domain_full)
+  except KeyError:
+    DOMAIN[domain_shrt] = set()
+    DOMAIN[domain_shrt].add(domain_full)
 
-    if DEBUG:
-      print(domain_shrt)
-      print(domain_full)
+  if DEBUG:
+    print(domain_shrt)
+    print(domain_full)
 
 
 ''' main function '''
@@ -100,14 +99,15 @@ if __name__ == "__main__":
   es_query = { "_source": { "includes": [ "dns.question.etld_plus_one", "dns.question.name", "dns.question.type" ] },
                "query" : {
                  "bool": {
-                   "must": { "exists": { "field": "dns.question.etld_plus_one" } },
-                   "must_not": {
-                     "terms" : {
-                       #"dns.question.type.keyword": "PTR",
-                       "dns.question.etld_plus_one": DOMAINS_EXCLUDED
-                     },
-                   },
-                   "filter": { "range": { "@timestamp": { "from": DOMAIN_TIME_PROCESSED } } },
+                   "must": [
+                     { "match":  { "tap": "internet" } },
+                     { "exists": { "field": "dns.question.etld_plus_one" } }
+                   ],
+                   "must_not": [
+                     { "terms": { "dns.question.etld_plus_one": DOMAINS_EXCLUDED } },
+                     { "match": { "dns.question.type.keyword": "PTR" } },
+                   ],
+                   "filter": { "range": { "@timestamp": { "from": DOMAIN_TIME_PROCESSED } } }
                  }
                },
                "size": ES_SIZE
