@@ -56,7 +56,6 @@ DOMAINS_EXCLUDED = [ "sophosxl.com",
                      "seznam.cz",
                      "szn.cz",
                      "trafficmanager.net",
-                     "vzp.cz",
                      "wbx2.com",
                      "windows.net",
                      "yahoo.com" ]
