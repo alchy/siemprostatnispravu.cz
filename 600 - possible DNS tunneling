@@ -87,9 +87,6 @@ def processing(hit):
 ''' main function '''
 if __name__ == "__main__":
 
-  ES_USER = 'python'
-  ES_PASS = '3507bcd4bd8655c1731265f2f4d7272b'
-
   es = Elasticsearch( 'localhost',
                        http_auth = ( ES_USER, ES_PASS ),
                        scheme = 'http',
