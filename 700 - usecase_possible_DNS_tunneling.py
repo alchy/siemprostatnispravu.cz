@@ -10,29 +10,29 @@ inspired by:
 import json
 import time
 import signal
-import smtplib
 import hashlib
 from datetime import datetime
 from elasticsearch import Elasticsearch
-from email.message import EmailMessage
 
 from extlib import get_network_from_ipaddress, get_network_from_hostname
+from extlib import send_alert
 
 
 ''' elasticsearch and program debug options '''
 DEBUG           = False
 ES_USER         = 'python'
 ES_PASS         = 'secret'
-ES_SIZE         = 1000
-ES_TIMEOUT      = 1000
+ES_SIZE         = 1000                          # how many results per query/scroll
+ES_TIMEOUT      = 4096                          # query timeout
 
 
 ''' email and alert specific options '''
 ALERT_NAME      = "possible DNS tunneling"
-ALERT_SENDER    = "someuser@somedomain"
-ALERT_RECIPIENT = "someuser@somedomain"
+ALERT_SENDER    = "user@domain"
+ALERT_RECIPIENT = "user@domain"
 ALERT_FILE      = "/tmp/_tmp_" + hashlib.md5(ALERT_NAME.encode('utf-8')).hexdigest()
 ALERT_TRIGGER   = False
+
 
 ''' control specific variables, exceptions and tresholds '''
 ''' before exclusion check owner via https://www.whois.com/ '''
@@ -174,15 +174,4 @@ if __name__ == "__main__":
          print("", file = file)
 
   if ALERT_TRIGGER:
-    with open(ALERT_FILE, "r") as file:
-
-      msg = EmailMessage()
-      msg.set_content(file.read())
-
-      msg['Subject'] = 'OIKB ALERT: ' + ALERT_NAME
-      msg['From'] = ALERT_SENDER
-      msg['To'] = ALERT_RECIPIENT
-
-      s = smtplib.SMTP('localhost')
-      s.send_message(msg)
-      s.quit()
+    send_alert(ALERT_FILE, ALERT_NAME, ALERT_SENDER, ALERT_RECIPIENT)
