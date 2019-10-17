@@ -78,7 +78,6 @@ DOMAIN_NOT_REPORT_SUB = 64                      # how many subdomains is in the 
 def processing(hit):
   domain_shrt = hit['dns']['question']['etld_plus_one']
   domain_full = hit['dns']['question']['name']
-  domain_qtpe = hit['dns']['question']['type']
 
   try:
     DOMAIN[domain_shrt].add(domain_full)
