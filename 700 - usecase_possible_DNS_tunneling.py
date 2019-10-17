@@ -35,36 +35,43 @@ ALERT_FILE      = "/tmp/_tmp_" + hashlib.md5(ALERT_NAME.encode('utf-8')).hexdige
 ALERT_TRIGGER   = False
 
 ''' control specific variables, exceptions and tresholds '''
-DOMAINS_EXCLUDED = [ "sophosxl.com",
-                     "akadns.net",
-                     "akamai.net",
-                     "akamaiedge.net",
-                     "apple.com",
-                     "azure.com",
-                     "azureedge.net",
-                     "amazonaws.com",
-                     "edgekey.net",
-                     "facebook.com",
-                     "google.com",
-                     "googlevideo.com",
-                     "idnes.cz",
-                     "kaspersky.com",
-                     "mcafee.com",
-                     "msn.com",
-                     "microsoft.com",
-                     "outlook.com",
-                     "seznam.cz",
-                     "szn.cz",
-                     "trafficmanager.net",
-                     "wbx2.com",
-                     "windows.net",
-                     "yahoo.com" ]
+''' before exclusion check owner via https://www.whois.com/ '''
+DOMAINS_EXCLUDED = [ "sophosxl.com",            # generated (Sophos)
+                     "akadns.net",              # (Akamai)
+                     "akamai.net",              # (Akamai)
+                     "akamaiedge.net",          # (Akamai)
+                     "akamaihd.net",            # generated(Akamai)
+                     "apple.com",               # (Apple)
+                     "azure.com",               # (Microsoft)
+                     "azureedge.net",           # (Microsoft)
+                     "amazonaws.com",           # (Amazon)
+                     "doubleclick.net",         # (Google)
+                     "cedexis-radar.net",       # generated (Cedexis)
+                     "edgekey.net",             # (Akamai)
+                     "edgesuite.net",           # (Akamai)
+                     "facebook.com",            # (Facebook)
+                     "google.com",              # (Google)
+                     "googlevideo.com",         # (Google)
+                     "googleusercontent.com",   # (Google)
+                     "gstatic.com",             # generated (Google)
+                     "kaspersky.com",           # (Kaspersky)
+                     "mcafee.com",              # (McAfee)
+                     "msn.com",                 # (Microsoft)
+                     "microsoft.com",           # (Microsoft)
+                     "outlook.com",             # (Microsoft)
+                     "office.com",              # generated (Microsoft)
+                     "seznam.cz",               # (Seznam)
+                     "szn.cz",                  # (Seznam)
+                     "trafficmanager.net",      # (Microsoft)
+                     "wbx2.com",                # generated (Webex)
+                     "windows.net",             # (Micsorosf)
+                     "yahoo.com" ]              # (Yahoo)
 
 
 DOMAIN = {}
-DOMAIN_TIME_PROCESSED = "now-24h"                       # time window to process
-DOMAIN_WARNING_TRESHOLD = 128                           # report domain if this is exceeded
-DOMAIN_NOT_REPORT_SUB = 1024                            # how many subdomains is in the report
+DOMAIN_TIME_PROCESSED = "now-24h"               # time window to process
+DOMAIN_WARNING_TRESHOLD = 256                   # report domain if this is exceeded
+DOMAIN_NOT_REPORT_SUB = 64                      # how many subdomains is in the report
 
 
 ''' event processing '''
@@ -93,7 +100,7 @@ if __name__ == "__main__":
                        port = 9200 )
 
   es_index = "packetbeat-*"
-  es_query = { "_source": { "includes": [ "dns.question.etld_plus_one", "dns.question.name", "dns.question.type" ] },
+  es_query = { "_source": { "includes": [ "dns.question.etld_plus_one", "dns.question.name" ] },
                "query" : {
                  "bool": {
                    "must": [
