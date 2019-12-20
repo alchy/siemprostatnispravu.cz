@@ -1,0 +1,902 @@
+PUT /_template/ips_template
+{
+  "index_patterns": "ips-*",
+  "mappings": {
+    "properties": {
+      "@computed": {
+        "properties": {
+          "action": {
+            "type": "keyword"
+          },
+          "detail": {
+            "type": "keyword"
+          },
+          "origin": {
+            "type": "keyword"
+          },
+          "dst_ip": {
+            "type": "ip"
+          },
+          "dst_fqdn": {
+            "type": "keyword"
+          },
+          "src_ip": {
+            "type": "ip"
+          },
+          "src_fqdn": {
+            "type": "keyword"
+          },
+          "applicationProtocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "blocked": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "classificationDescription": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "classificationName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "clientApplication": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "destinationIpCountry": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "egressInterface": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "egressSecurityZone": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "eventDateTime": {
+            "type": "date"
+          },
+          "eventDescription": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "eventMicrosecond": {
+            "type": "long"
+          },
+          "eventSecond": {
+            "type": "long"
+          },
+          "firewallPolicy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "firewallRule": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "idsPolicy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "impact": {
+            "type": "long"
+          },
+          "impactDescription": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ingressInterface": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ingressSecurityZone": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "message": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "networkAnalysisPolicy": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "priority": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "recordTypeCategory": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "recordTypeDescription": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "renderedId": {
+            "type": "long"
+          },
+          "sensor": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sourceIpCountry": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sslActualAction": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "sslFlowStatus": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "transportProtocol": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "user": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "webApplication": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "@timestamp": {
+        "type": "date"
+      },
+      "@version": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "accessControlPolicyUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "accessControlRuleId": {
+        "type": "long"
+      },
+      "action": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "applicationId": {
+        "type": "long"
+      },
+      "archiveTimestamp": {
+        "type": "long"
+      },
+      "blockLength": {
+        "type": "long"
+      },
+      "blockType": {
+        "type": "long"
+      },
+      "blocked": {
+        "type": "long"
+      },
+      "checksum": {
+        "type": "long"
+      },
+      "classificationId": {
+        "type": "long"
+      },
+      "clientApplicationId": {
+        "type": "long"
+      },
+      "connectionCounter": {
+        "type": "long"
+      },
+      "connectionInstanceId": {
+        "type": "long"
+      },
+      "connectionTimestamp": {
+        "type": "long"
+      },
+      "description": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "descriptionLength": {
+        "type": "long"
+      },
+      "destinationCountry": {
+        "type": "long"
+      },
+      "destinationIpAddress": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "destinationPortOrIcmpType": {
+        "type": "long"
+      },
+      "detail": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "deviceId": {
+        "type": "long"
+      },
+      "dst_fqdn": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "dst_ip": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "eventId": {
+        "type": "long"
+      },
+      "eventMicrosecond": {
+        "type": "long"
+      },
+      "eventSecond": {
+        "type": "long"
+      },
+      "eventSubtype": {
+        "type": "long"
+      },
+      "eventType": {
+        "type": "long"
+      },
+      "generatorId": {
+        "type": "long"
+      },
+      "hasIpv6": {
+        "type": "long"
+      },
+      "host": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "httpResponse": {
+        "type": "long"
+      },
+      "id": {
+        "type": "long"
+      },
+      "impact": {
+        "type": "long"
+      },
+      "impactFlags": {
+        "type": "long"
+      },
+      "interfaceEgressUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "interfaceIngressUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "iocNumber": {
+        "type": "long"
+      },
+      "ipProtocolId": {
+        "type": "long"
+      },
+      "ipv6Address": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "legacyIpAddress": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "length": {
+        "type": "long"
+      },
+      "linkType": {
+        "type": "long"
+      },
+      "macAddress": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "message": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "messageLength": {
+        "type": "long"
+      },
+      "mplsLabel": {
+        "type": "long"
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "nameLength": {
+        "type": "long"
+      },
+      "networkAnalysisPolicyUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "packetData": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "packetLength": {
+        "type": "long"
+      },
+      "packetMicrosecond": {
+        "type": "long"
+      },
+      "packetSecond": {
+        "type": "long"
+      },
+      "pad": {
+        "type": "long"
+      },
+      "path": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "policyUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "priorityId": {
+        "type": "long"
+      },
+      "recordLength": {
+        "type": "long"
+      },
+      "recordType": {
+        "type": "long"
+      },
+      "revisionUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ruleId": {
+        "type": "long"
+      },
+      "ruleRevision": {
+        "type": "long"
+      },
+      "ruleRevisionUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ruleUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "securityContext": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "securityZoneEgressUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "securityZoneIngressUuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "signatureId": {
+        "type": "long"
+      },
+      "sourceCountry": {
+        "type": "long"
+      },
+      "sourceIpAddress": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "sourcePortOrIcmpType": {
+        "type": "long"
+      },
+      "src_fqdn": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "src_ip": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "sslActualAction": {
+        "type": "long"
+      },
+      "sslCertificateFingerprint": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "sslFlowStatus": {
+        "type": "long"
+      },
+      "user": {
+        "properties": {
+          "applicationId": {
+            "type": "long"
+          },
+          "blockLength": {
+            "type": "long"
+          },
+          "blockType": {
+            "type": "long"
+          },
+          "department": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "email": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "firstName": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "ipv4Address": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ipv6Address": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "lastName": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "loginType": {
+            "type": "long"
+          },
+          "phone": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "protocol": {
+            "type": "long"
+          },
+          "reportedBy": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "timestamp": {
+            "type": "long"
+          },
+          "userId": {
+            "type": "long"
+          },
+          "username": {
+            "properties": {
+              "blockLength": {
+                "type": "long"
+              },
+              "blockType": {
+                "type": "long"
+              },
+              "data": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "userId": {
+        "type": "long"
+      },
+      "uuid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "vlanId": {
+        "type": "long"
+      },
+      "webApplicationId": {
+        "type": "long"
+      }
+    }
+  }
+}
