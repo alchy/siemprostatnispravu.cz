@@ -109,6 +109,7 @@ PUT /_template/packetbeat-template
           },
           "domain": {
             "type": "text",
+            "fielddata": true,
             "fields": {
               "keyword": {
                 "type": "keyword"
@@ -374,6 +375,7 @@ PUT /_template/packetbeat-template
           },
           "name": {
             "type": "text",
+            "fielddata": true,
             "fields": {
               "keyword": {
                 "type": "keyword"
@@ -1110,5 +1112,6 @@ PUT /_template/packetbeat-template
       }
     }
   },
-  "aliases": {}
+  "aliases": {
+  }
 }
