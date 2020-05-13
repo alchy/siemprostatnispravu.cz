@@ -1,0 +1,53 @@
+PUT /_template/syslog-f5-template
+{
+  "index_patterns": "syslog-f5-*",
+  "mappings": {
+    "properties": {
+      "dns_type": {
+        "type": "keyword"
+      },
+      "dns_query": {
+        "type": "text"
+      },
+      "dns_class": {
+        "type": "keyword"
+      },
+      "message": {
+        "type": "text"
+      },
+      "type": {
+        "type": "keyword"
+      },
+      "dst_ip": {
+        "type": "ip"
+      },
+      "tags": {
+        "type": "text"
+      },
+      "src_ip": {
+        "type": "ip"
+      },
+      "src_port": {
+        "type": "integer"
+      },
+      "@timestamp": {
+        "type": "date"
+      },
+      "@version": {
+        "type": "text"
+      },
+      "origin_fqdn": {
+        "type": "text"
+      },
+      "src_fqdn": {
+        "type": "text"
+      },
+      "src_type": {
+        "type": "keyword"
+      },
+      "origin_ip": {
+        "type": "ip"
+      }
+    }
+  }
+}
