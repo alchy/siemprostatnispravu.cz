@@ -1,0 +1,9 @@
+# move indices from nodes in cluster (https://www.elastic.co/guide/en/elasticsearch/reference/7.6/allocation-filtering.html)
+PUT _cluster/settings
+{
+  "transient" : {
+    "cluster.routing.allocation.exclude._name" : "d1clcsec1,d2clcsec1"
+  }
+}
+
+# cluster API commands (https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html)
