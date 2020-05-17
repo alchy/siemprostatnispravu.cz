@@ -7,3 +7,7 @@ PUT _cluster/settings
 }
 
 # cluster API commands (https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html)
+
+# try runninc ELK component from commandline to get a debug
+runuser -l kibana -c '/usr/share/kibana/bin/kibana -c /etc/kibana/kibana.yml'
+
