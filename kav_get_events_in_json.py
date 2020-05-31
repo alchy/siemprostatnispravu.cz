@@ -11,8 +11,8 @@ from shutil import copyfile
 from datetime import datetime
 
 
-sql_user            = "qradar"
-sql_pass            = "qradar2018!"
+sql_user            = "*****"
+sql_pass            = "*****"
 sql_dump            = "C:\\Users\\obitadmin\\Elasticsearch\\dump\\kav_events.dump"
 sql_dump_debug      = "C:\\Users\\obitadmin\\Elasticsearch\\dump\\kav_events.dump.debug"
 sql_dump_converted  = "C:\\Users\\obitadmin\\Elasticsearch\\dump\\kav_events.dump.tmp"
