@@ -45,6 +45,9 @@ vystavení certifikátru pro log server/logstash
   
 - podepsání žádosti o certifikát
   ./easyrsa sign-req server clcsec.dc.vzp.cz
+
+- převod do pem
+  openssl x509 -in clcsec.dc.vzp.cz.crt -out clcsec.dc.vzp.czt.pem -outform PEM
   
 -------------------------------------------
 vystavení certifikátru pro klienta logování
