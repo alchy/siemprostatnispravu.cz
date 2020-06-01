@@ -79,7 +79,7 @@ with io.open(sql_json,'wt', encoding = dst_file_encoding) as json_out:
           # UTC time with offset to Elasticsearch
           m, s = divmod(time.timezone, 60)
           h, m = divmod(m, 60)
-          time_offset = "%.2d%.2d" % ((h - time.localtime().tm_isdst) * -1, m)
+          time_offset = "+%.2d%.2d" % (abs(h - time.localtime().tm_isdst), m)
           row['tmRiseTime'] = datetime.strptime(row['tmRiseTime'], '%Y-%m-%d %H:%M:%S.%f')
           row['tmRiseTime'] = row['tmRiseTime'].strftime("%Y%m%dT%H%M%S") + time_offset
           row['tmRegistrationTime'] = datetime.strptime(row['tmRegistrationTime'], '%Y-%m-%d %H:%M:%S.%f')
