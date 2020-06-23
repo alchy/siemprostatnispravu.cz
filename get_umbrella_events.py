@@ -12,7 +12,7 @@ proxyDict = {
               "https" : "xxx.xx.xxx.xx:3128"
             }
 
-umbrella_url = "https://reports.api.umbrella.com/v1/organizations/3192238/security-activity"
+umbrella_url = "https://reports.api.umbrella.com/v1/organizations/xxxxxxxxxxx/security-activity"
 umbrella_key = "*****"
 umbrella_scr = "*****"
 
