@@ -38,7 +38,7 @@ def getIP(d):
     return "0.0.0.0"
 
 
-def get_umbrella_report(start, stop, stipTimestamp):
+def get_umbrella_report(start, stop, stopTimestamp):
   print("[d] start time: ", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start)))
   print("[d] stop  time: ", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(stop)))
 
