@@ -1,0 +1,169 @@
+PUT /_template/syslog-gtm-template
+{
+    "order" : 0,
+    "index_patterns" : [
+      "syslog-gtm-*"
+    ],
+    "settings" : {
+      "index" : {
+        "lifecycle" : {
+          "name" : "syslog-gtm-lifecycle"
+        },
+        "number_of_shards" : "12"
+      }
+    },
+    "mappings" : {
+      "_meta" : { },
+      "_source" : { },
+      "properties" : {
+        "dns_type" : {
+          "type" : "keyword"
+        },
+        "dns_query" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "dns" : {
+          "type" : "object",
+          "properties" : {
+            "op_code" : {
+              "type" : "keyword"
+            },
+            "response_code" : {
+              "type" : "keyword"
+            },
+            "resolved_ip" : {
+              "path" : "dst_ip",
+              "type" : "alias"
+            },
+            "question" : {
+              "type" : "object",
+              "properties" : {
+                "registered_domain" : {
+                  "type" : "keyword"
+                },
+                "top_level_domain" : {
+                  "type" : "keyword"
+                },
+                "name" : {
+                  "path" : "dns_query.keyword",
+                  "type" : "alias"
+                },
+                "subdomain" : {
+                  "type" : "keyword"
+                },
+                "type" : {
+                  "path" : "dns_type",
+                  "type" : "alias"
+                },
+                "class" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "answers" : {
+              "type" : "object",
+              "properties" : {
+                "data" : {
+                  "type" : "keyword"
+                },
+                "name" : {
+                  "type" : "keyword"
+                },
+                "type" : {
+                  "type" : "keyword"
+                },
+                "class" : {
+                  "type" : "keyword"
+                },
+                "ttl" : {
+                  "type" : "long"
+                }
+              }
+            },
+            "id" : {
+              "type" : "keyword"
+            },
+            "header_flags" : {
+              "type" : "keyword"
+            },
+            "type" : {
+              "path" : "dns_type",
+              "type" : "alias"
+            }
+          }
+        },
+        "dns_class" : {
+          "type" : "keyword"
+        },
+        "message" : {
+          "type" : "text"
+        },
+        "type" : {
+          "type" : "keyword"
+        },
+        "dst_ip" : {
+          "type" : "ip"
+        },
+        "tags" : {
+          "type" : "text"
+        },
+        "src_ip" : {
+          "type" : "ip"
+        },
+        "src_port" : {
+          "type" : "integer"
+        },
+        "@timestamp" : {
+          "type" : "date"
+        },
+        "@version" : {
+          "type" : "text"
+        },
+        "origin_fqdn" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "src_fqdn" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "host" : {
+          "type" : "object",
+          "properties" : {
+            "hostname" : {
+              "path" : "src_fqdn.keyword",
+              "type" : "alias"
+            },
+            "ip" : {
+              "path" : "src_ip",
+              "type" : "alias"
+            },
+            "name" : {
+              "path" : "src_fqdn",
+              "type" : "alias"
+            }
+          }
+        },
+        "src_type" : {
+          "type" : "keyword"
+        },
+        "origin_ip" : {
+          "type" : "ip"
+        }
+      }
+    },
+    "aliases" : { }
+}
