@@ -13,3 +13,14 @@ PUT _cluster/settings
 # try runninc ELK component from commandline to get a debug
 runuser -l kibana -c '/usr/share/kibana/bin/kibana -c /etc/kibana/kibana.yml'
 
+aliases
+=======
+GET _cat/aliases?v
+
+PUT /metricbeat-7.4.0-2019-11-06
+{
+    "actions" : [
+        { "add" : { "index" : "metricbeat-7.4.0-2019.11.06-000001", "alias" : "metricbeat-7.4.0", "is_write_index" : "true" }
+           }
+    ]
+}
