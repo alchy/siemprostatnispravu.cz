@@ -1,3 +1,6 @@
+allocations
+===========
+
 # move indices from nodes in cluster (https://www.elastic.co/guide/en/elasticsearch/reference/7.6/allocation-filtering.html)
 PUT _cluster/settings
 {
@@ -13,8 +16,10 @@ PUT _cluster/settings
 # try runninc ELK component from commandline to get a debug
 runuser -l kibana -c '/usr/share/kibana/bin/kibana -c /etc/kibana/kibana.yml'
 
+
 aliases
 =======
+
 GET _cat/aliases?v
 
 PUT /metricbeat-7.4.0-2019-11-06
@@ -24,3 +29,49 @@ PUT /metricbeat-7.4.0-2019-11-06
            }
     ]
 }
+
+
+gluster
+=======
+
+rpm --import key.centos_8.key
+rpm --import key_centos_sig.key
+
+rpm -ivh glusterfs-libs-7.8-1.el7.x86_64.rpm
+rpm -ivh glusterfs-7.8-1.el7.x86_64.rpm
+rpm -ivh glusterfs-client-xlators-7.8-1.el7.x86_64.rpm
+rpm -ivh glusterfs-api-7.8-1.el7.x86_64.rpm
+rpm -ivh glusterfs-cli-7.8-1.el7.x86_64.rpm
+rpm -ivh glusterfs-fuse-7.8-1.el7.x86_64.rpm
+rpm -ivh userspace-rcu-0.10.1-2.el8.x86_64.rpm
+rpm -ivh glusterfs-server-7.8-1.el7.x86_64.rpm
+
+systemctl start glusterd
+systemctl enable glusterd
+systemctl status glusterd
+
+gluster peer probe d2clcsec2.dc.vzp.cz
+
+gluster volume create elk replica 6 d1clcsec2.dc.vzp.cz:/data/elk d2clcsec2.dc.vzp.cz:/data/elk d1clcsec3.dc.vzp.cz:/data/elk d2clcsec3.dc.vzp.cz:/data/elk d1clcsec4.dc.vzp.cz:/data/elk d2clcsec4.dc.vzp.cz:/data/elk
+
+gluster volume start elk
+
+gluster volume info
+
+mount -t glusterfs localhost:/gv0 /mnt/elastic/
+
+localhost:/elk /mnt/elk/ glusterfs  defaults,_netdev 0 0
+mkdir -p /mnt/elk/etc/logstash/conf.d/
+ln -s /mnt/elk/etc/logstash/conf.d/ /etc/logstash/conf.d
+
+systemctl edit logstash.service
+[Service]
+Environment="HOSTNAME=d1clcsec4.dc.vzp.cz"
+
+cat /etc/systemd/system/logstash.service.d/override.conf
+
+vim /etc/systemd/system/logstash.service
+ExecStart=/usr/share/logstash/bin/logstash "--path.settings" "/etc/logstash" "--config.reload.automatic"
+
+# on systemd units
+https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux#h4-the-unit-section
