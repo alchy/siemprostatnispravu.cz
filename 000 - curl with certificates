@@ -1,0 +1,1 @@
+ curl -X GET "https://clcsec.dc.vzp.cz:9200/_cluster/allocation/explain?pretty=true" --cert /mnt/elk/etc/easyrsa/easyrsa3/pki/issued/clcsec.dc.vzp.cz.crt --key /mnt/elk/etc/easyrsa/easyrsa3/pki/private/clcsec.dc.vzp.cz.key --cacert /mnt/elk/etc/easyrsa/easyrsa3/pki/ca.crt -u elastic:PASSWORD
