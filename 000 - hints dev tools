@@ -1,0 +1,48 @@
+GET /_cluster/settings?pretty=true
+
+GET /.security-7/_settings
+
+PUT /.security-7/_settings
+{
+  "index" : {
+    "auto_expand_replicas": "4-all",
+    "number_of_replicas": "4"
+  }
+}
+
+GET /_cat/templates?pretty=true
+
+GET /_template/syslog-afm-template
+GET /_template/winlogbeat-template
+GET /_template/syslog-cisco-template
+
+
+PUT /_cluster/settings
+{
+  "persistent" : {
+    "cluster" : {
+      "max_shards_per_node" : "2048"
+    },
+    "xpack" : {
+      "monitoring" : {
+        "collection" : {
+          "enabled" : "true"
+        }
+      }
+    }
+  },
+  "transient" : { }
+}
+
+GET /_cluster/allocation/explain?pretty=true
+
+GET /_cat/shards?pretty=true
+
+DELETE /packetbeat-202104    
+
+PUT /my-index-000001/_settings
+{
+  "index" : {
+    "number_of_replicas" : 4
+  }
+}
