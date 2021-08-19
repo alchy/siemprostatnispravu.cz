@@ -1,4 +1,13 @@
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html
+GET /_nodes/master:true
+GET /_nodes/_all,master:false
+GET /_nodes/d2clcsec3
+
 GET /_cluster/settings?pretty=true
+
+GET /_cat/shards?pretty=true
+
+GET /_cluster/allocation/explain?pretty=true
 
 GET /.security-7/_settings
 
@@ -33,10 +42,6 @@ PUT /_cluster/settings
   },
   "transient" : { }
 }
-
-GET /_cluster/allocation/explain?pretty=true
-
-GET /_cat/shards?pretty=true
 
 DELETE /packetbeat-202104    
 
