@@ -3,11 +3,35 @@ GET /_nodes/master:true
 GET /_nodes/_all,master:false
 GET /_nodes/d2clcsec3
 
-GET /_cluster/settings?pretty=true
 
 GET /_cat/shards?pretty=true
 
 GET /_cluster/allocation/explain?pretty=true
+
+GET /_cluster/state?pretty
+
+GET /_cluster/settings?pretty=true
+
+PUT /_cluster/settings
+{
+  "persistent" : {
+    "cluster" : {
+      "max_shards_per_node" : "2048"
+    },
+    "xpack" : {
+      "monitoring" : {
+        "collection" : {
+          "enabled" : "true"
+        }
+      }
+    }
+  },
+  "transient" : { 
+    "cluster.routing.allocation.disk.watermark.high" : "85%"
+  }
+}
+
+
 
 GET /.security-7/_settings
 
@@ -43,7 +67,8 @@ PUT /_cluster/settings
   "transient" : { }
 }
 
-DELETE /packetbeat-202104    
+GET /.siem-signals-oikb
+DELETE /.siem-signals-oikb-000004
 
 PUT /my-index-000001/_settings
 {
